@@ -29,6 +29,13 @@
  */
 #include <MqttsnClientApp.h>
 #include <MqttsnClient.h>
+
+#include <SoftwareSerial.h>
+
+#if defined(DEBUG_NW) || defined(DEBUG_MQTTSN) || defined(DEBUG)
+SoftwareSerial debug(8, 9);
+#endif
+
 using namespace std;
 using namespace tomyAsyncClient;
 extern MqttsnClient* theClient;
@@ -70,7 +77,7 @@ void task1(void){
   tomyAsyncClient::Payload* pl = new Payload(10);
   onoffFlg = !onoffFlg;
   pl->set_bool(onoffFlg);
-  PUBLISH(topic2,pl,1);
+  PUBLISH(topic1,pl,1);
 }
 
 void task2(void){
@@ -79,7 +86,7 @@ void task2(void){
 
 /*---------------  List of task invoked by Timer ------------*/
 
-TASK_LIST = {  //TASK( const char* topic, executing duration in second),
+TASK_LIST = {  /* e.g. TASK( const char* topic, executing duration in second), */
              TASK(task1,3),
              TASK(task2,20),
              END_OF_TASK_LIST
@@ -97,8 +104,8 @@ int on_publish(tomyAsyncClient::Payload* pload){
 
 /*------------ Link Callback to Topic -------------*/
 
-SUBSCRIBE_LIST = {//SUB(topic, callback, QoS=0or1),
-                  SUB(topic2, on_publish, 1),
+SUBSCRIBE_LIST = { /* e.g. SUB(topic, callback, QoS=0or1), */
+                  SUB(topic1, on_publish, 1),
                   END_OF_SUBSCRIBE_LIST
                  };
 

@@ -58,7 +58,7 @@ extern MqttsnClient* theClient;
     	"client01",     //ClientId
 		57600,          //Baudrate
         0,              //Serial PortNo (for Arduino App)
-        "/dev/ttyUSB0"               //Device (for linux App)
+        "/dev/ttyUSB0"  //Device (for linux App)
     },
     {
         300,            //KeepAlive
@@ -115,7 +115,7 @@ void task2(void){
 
 /*---------------  List of task invoked by Timer ------------*/
 
-TASK_LIST = {  // ex. TASK( const char* topic, executing duration in second),
+TASK_LIST = {  /* e.g. TASK( const char* topic, executing duration in second), */
              TASK(task1,1),
              TASK(task2,5),
              END_OF_TASK_LIST
@@ -132,7 +132,7 @@ int on_publish(Payload* payload){
 
 /*------------ Link Callback to Topic -------------*/
 
-SUBSCRIBE_LIST = { // ex. SUB(topic, callback, QoS=0or1),
+SUBSCRIBE_LIST = { /* e.g. SUB(topic, callback, QoS=0or1), */
                   SUB(topic2, on_publish, 1),
                   END_OF_SUBSCRIBE_LIST
                  };
