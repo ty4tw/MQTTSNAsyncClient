@@ -28,6 +28,7 @@ in MQTTSNAsyncClient/src, you can find the source code Application.cpp and the l
 ### step2. compile Application.cpp   
  
     $ cd MQTTSNAsyncClient
+    $ make
     
 if there is no error, copy the Client program.   
    
