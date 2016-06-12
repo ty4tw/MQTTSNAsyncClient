@@ -132,7 +132,7 @@ int on_publish(Payload* payload){
 
 /*------------ Link Callback to Topic -------------*/
 
-SUBSCRIBE_LIST = { /* e.g. SUB(topic, callback, QoS=0or1), */
+SUBSCRIBE_LIST = { /* e.g. SUB(topic, callback, QoS = 0,1 or 2), */
                   SUB(topic2, on_publish, 1),
                   END_OF_SUBSCRIBE_LIST
                  };

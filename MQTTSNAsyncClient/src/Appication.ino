@@ -104,7 +104,7 @@ int on_publish(tomyAsyncClient::Payload* pload){
 
 /*------------ Link Callback to Topic -------------*/
 
-SUBSCRIBE_LIST = { /* e.g. SUB(topic, callback, QoS=0or1), */
+SUBSCRIBE_LIST = { /* e.g. SUB(topic, callback, QoS = 0,1 or 2), */
                   SUB(topic1, on_publish, 1),
                   END_OF_SUBSCRIBE_LIST
                  };
