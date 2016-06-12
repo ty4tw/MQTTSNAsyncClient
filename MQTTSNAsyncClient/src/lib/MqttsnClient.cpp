@@ -28,30 +28,28 @@
  *
  */
 
+#include <MqttsnClientApp.h>
+#include <GwProxy.h>
+#include <MqttsnClient.h>
+#include <string.h>
+#include <stdio.h>
+
 #ifdef ARDUINO
-        #include <MqttsnClientApp.h>
-        #include <GwProxy.h>
-        #include <MqttsnClient.h>
-		#include <SoftwareSerial.h>;
+		#include <SoftwareSerial.h>
 		#include <LowPower.h>
 		#include <Timer.h>
-#else
-        #include "MqttsnClientApp.h"
-        #include "GwProxy.h"
-        #include "MqttsnClient.h"
 #endif
 
 #if defined(ARDUINO) && ARDUINO >= 100
-        #include "Arduino.h"
+        #include <Arduino.h>
         #include <inttypes.h>
 #endif
 
 #if defined(ARDUINO) && ARDUINO < 100
-        #include "WProgram.h"
+        #include <WProgram.h>
         #include <inttypes.h>
 #endif
-#include <string.h>
-#include <stdio.h>
+
 
 using namespace std;
 using namespace tomyAsyncClient;

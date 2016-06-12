@@ -31,21 +31,19 @@
 #ifndef TIMER_H_
 #define TIMER_H_
 
+#include <MqttsnClientApp.h>
+
 #if defined(ARDUINO)
-	#include <MqttsnClientApp.h>
     #if ARDUINO >= 100
-        #include "Arduino.h"
+        #include <Arduino.h>
         #include <inttypes.h>
     #else
         #if ARDUINO < 100
-            #include "WProgram.h"
+            #include <WProgram.h>
             #include <inttypes.h>
         #endif
     #endif
-#else
-	#include "MqttsnClientApp.h"
-#endif /* ARDUINO */
-
+#endif
 
 #ifdef LINUX
     #include <sys/time.h>

@@ -27,16 +27,12 @@
  * THE POSSIBILITY OF SUCH DAMAGE.
  *
  */
-#ifdef ARDUINO
-        #include <MqttsnClientApp.h>
-        #include <TopicTable.h>
-#else
-        #include "MqttsnClientApp.h"
-        #include "TopicTable.h"
-#endif
+
+#include <MqttsnClientApp.h>
+#include <TopicTable.h>
 
 #if defined(ARDUINO) && ARDUINO >= 100
-        #include "Arduino.h"
+        #include <Arduino.h>
         #include <inttypes.h>
 #endif
 

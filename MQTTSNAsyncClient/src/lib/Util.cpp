@@ -28,11 +28,7 @@
  *
  */
 
-#ifndef ARDUINO
-        #include "MqttsnClientApp.h"
-#else
-        #include <MqttsnClientApp.h>
-#endif
+#include <MqttsnClientApp.h>
 
 using namespace std;
 /*=====================================

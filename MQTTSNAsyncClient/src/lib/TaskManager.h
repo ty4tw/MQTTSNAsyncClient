@@ -31,26 +31,15 @@
 #ifndef TASKMANAGER_H_
 #define TASKMANAGER_H_
 
-#ifdef ARDUINO
-    #include <MqttsnClientApp.h>
-#else
-	#include "MqttsnClientApp.h"
-#endif
-
-#ifdef ARDUINO
-  #include <Timer.h>
-#endif  /* ARDUINO */
-
-
-#ifdef LINUX
-  #include "Timer.h"
-  #include <stdio.h>
-  #include <string.h>
-#endif /* LINUX */
+#include <MqttsnClientApp.h>
+#include <Timer.h>
+#include <stdio.h>
+#include <string.h>
 
 using namespace std;
 
 namespace tomyAsyncClient {
+
 struct TaskList{
     void     (*callback)(void);
 	uint32_t interval;

@@ -28,17 +28,10 @@
  *
  */
 
-#ifndef ARDUINO
-  	#include "MqttsnClientApp.h"
-	#include "Timer.h"
-	#include <stdlib.h>
-	#include <string.h>
-#else
-  	#include <MqttsnClientApp.h>
-	#include <Timer.h>
-	#include <stdlib.h>
-	#include <string.h>
-#endif
+#include <MqttsnClientApp.h>
+#include <Timer.h>
+#include <stdlib.h>
+#include <string.h>
 
 using namespace std;
 using namespace tomyAsyncClient;

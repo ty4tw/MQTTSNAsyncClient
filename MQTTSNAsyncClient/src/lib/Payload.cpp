@@ -28,13 +28,10 @@
  *
  */
 
+#include <MqttsnClientApp.h>
+#include <Payload.h>
 
-#ifdef ARDUINO
-  	#include <MqttsnClientApp.h>
-	#include <Payload.h>
-#else
-  	#include "MqttsnClientApp.h"
-	#include "Payload.h"
+#ifdef LINUX
     #include <sys/stat.h>
     #include <stdlib.h>
     #include <stdio.h>

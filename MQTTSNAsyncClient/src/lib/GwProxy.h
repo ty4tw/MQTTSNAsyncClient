@@ -31,44 +31,28 @@
 #ifndef GWPROXY_H_
 #define GWPROXY_H_
 
-#ifdef ARDUINO
-	#include <MqttsnClientApp.h>
-#else
-	#include "MqttsnClientApp.h"
+#include <MqttsnClientApp.h>
+
+#ifdef NETWORK_UDP
+#include <NetworkUdp.h>
+#endif
+#ifdef NETWORK_XBEE
+#include <NetworkXBee.h>
 #endif
 
+#include <Timer.h>
+#include <RegisterManager.h>
+#include <TopicTable.h>
+
+#include <stdio.h>
+#include <string.h>
+
 #ifdef ARDUINO
-  #ifdef NETWORK_UDP
-    #include <NetworkUdp.h>
-  #endif
-  #ifdef NETWORK_XBEE
-    #include <NetworkXBee.h>
-  #endif
-  #include <Timer.h>
-  #include <RegisterManager.h>
-  #include <TopicTable.h>
-
-  #if defined(DEBUG_NW) || defined(DEBUG_MQTTSN) || defined(DEBUG)
-        #include <SoftwareSerial.h>
-        extern SoftwareSerial debug;
-  #endif
-
-#endif  /* ARDUINO */
-
-
-#ifdef LINUX
-  #ifdef NETWORK_UDP
-    #include "NetworkUdp.h"
-  #endif
-  #ifdef NETWORK_XBEE
-    #include "NetworkXBee.h"
-  #endif
-  #include "Timer.h"
-  #include "RegisterManager.h"
-  #include "TopicTable.h"
-  #include <stdio.h>
-  #include <string.h>
-#endif /* LINUX */
+#if defined(DEBUG_NW) || defined(DEBUG_MQTTSN) || defined(DEBUG)
+	#include <SoftwareSerial.h>
+	extern SoftwareSerial debug;
+#endif
+#endif
 
 using namespace std;
 

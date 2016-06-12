@@ -27,25 +27,21 @@
  * THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifdef ARDUINO
-        #include <MqttsnClientApp.h>
-        #include <MqttsnClient.h>
-        #include <GwProxy.h>
-#else
-        #include "MqttsnClientApp.h"
-        #include "MqttsnClient.h"
-        #include "GwProxy.h"
-#endif
+
+#include <MqttsnClientApp.h>
+#include <MqttsnClient.h>
+#include <GwProxy.h>
 
 #if defined(ARDUINO) && ARDUINO >= 100
-        #include "Arduino.h"
+        #include <Arduino.h>
         #include <inttypes.h>
 #endif
 
 #if defined(ARDUINO) && ARDUINO < 100
-        #include "WProgram.h"
+        #include <WProgram.h>
         #include <inttypes.h>
 #endif
+
 #include <string.h>
 #include <stdio.h>
 

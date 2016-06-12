@@ -31,30 +31,18 @@
 #ifndef PUBLISHMANAGER_H_
 #define PUBLISHMANAGER_H_
 
-#ifdef ARDUINO
-    #include <MqttsnClientApp.h>
-#else
-	#include "MqttsnClientApp.h"
-#endif
+#include <MqttsnClientApp.h>
+#include <Timer.h>
+#include <Payload.h>
+#include <TopicTable.h>
 
 #ifdef ARDUINO
-  #include <Timer.h>
-  #include <Payload.h>
-  #include <TopicTable.h>
-
   #if defined( NW_DEBUG) || defined(MQTTSN_DEBUG)
         #include <SoftwareSerial.h>
         extern SoftwareSerial debug;
   #endif
 
 #endif  /* ARDUINO */
-
-
-#ifdef LINUX
-  #include "Timer.h"
-  #include "Payload.h"
-  #include "TopicTable.h"
-#endif /* LINUX */
 
 using namespace std;
 

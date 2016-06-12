@@ -28,53 +28,42 @@
  *
  */
 
-#ifndef ARDUINO
-        #include "MqttsnClientApp.h"
-#else
-        #include <MqttsnClientApp.h>
-#endif
+#include <MqttsnClientApp.h>
+#include <NetworkUdp.h>
+#include <Timer.h>
 
 #ifdef NETWORK_UDP
 
 #ifdef ARDUINO
-  #include <NetworkUdp.h>
-  #include <Timer.h>
-  #include <SPI.h>
-  #include <Ethernet.h>
-  #include <EthernetUdp.h>
-
-  #if defined(DEBUG_NW) || defined(DEBUG_MQTTSN) || defined(DEBUG)
+	#if defined(DEBUG_NW) || defined(DEBUG_MQTTSN) || defined(DEBUG)
         #include <SoftwareSerial.h>
         extern SoftwareSerial debug;
-  #endif
-
+	#endif
+	#include <SPI.h>
+	#include <Ethernet.h>
+	#include <EthernetUdp.h>
 #endif  /* ARDUINO */
 
 
 #ifdef LINUX
-        #include "NetworkUdp.h"
-		#include "Timer.h"
-        #include <stdio.h>
-        #include <sys/time.h>
-        #include <sys/types.h>
-		#include <sys/socket.h>
-        #include <sys/stat.h>
-        #include <unistd.h>
-        #include <stdlib.h>
-        #include <string.h>
-        #include <fcntl.h>
-        #include <errno.h>
-        #include <termios.h>
-
+	#include <stdio.h>
+	#include <sys/time.h>
+	#include <sys/types.h>
+	#include <sys/socket.h>
+	#include <sys/stat.h>
+	#include <unistd.h>
+	#include <stdlib.h>
+	#include <string.h>
+	#include <fcntl.h>
+	#include <errno.h>
+	#include <termios.h>
 #endif /* LINUX */
 
 using namespace std;
 using namespace tomyAsyncClient;
 
 extern uint16_t getUint16(const uint8_t* pos);
-//extern void setUint16(uint8_t* pos, uint16_t val);
 extern uint32_t getUint32(const uint8_t* pos);
-//extern void setUint32(uint8_t* pos, uint32_t val);
 
 /*=========================================
        Class Network
@@ -183,7 +172,7 @@ bool UdpPort::open(UdpConfig config){
 		Ethernet.begin(_macAddr, _cIpAddr);
 	}
 
-	if(_udpMulticast.beginMulti(_gIpAddr, _gPortNo) == 0){
+	if(_udpMulticast.beginMulticast(_gIpAddr, _gPortNo) == 0){
 		return false;
 	}
 	if(_udpUnicast.begin(_uPortNo) == 0){
@@ -279,7 +268,7 @@ void UdpPort::close(){
 
 bool UdpPort::open(UdpConfig config){
 	const int reuse = 1;
-	char loopch = 0;
+	char loopch = 1;
 
 	uint8_t sav = config.ipAddress[3];
 	config.ipAddress[3] = config.ipAddress[0];
@@ -327,14 +316,14 @@ bool UdpPort::open(UdpConfig config){
 	if( ::bind ( _sockfdMcast, (struct sockaddr*)&addrm,  sizeof(addrm)) <0){
 		return false;
 	}
-
+/*
 	if(setsockopt(_sockfdUcast, IPPROTO_IP, IP_MULTICAST_LOOP,(char*)&loopch, sizeof(loopch)) <0 ){
 		D_NWL("error IP_MULTICAST_LOOP in UdpPort::open\n");
 
 		close();
 		return false;
 	}
-
+*/
 	if(setsockopt(_sockfdMcast, IPPROTO_IP, IP_MULTICAST_LOOP,(char*)&loopch, sizeof(loopch)) <0 ){
 		D_NWL("error IP_MULTICAST_LOOP in UdpPPort::open\n");
 		close();
@@ -353,7 +342,7 @@ bool UdpPort::open(UdpConfig config){
 #endif
 /*
 	if( setsockopt(_sockfdUcast, IPPROTO_IP, IP_ADD_MEMBERSHIP, &mreq, sizeof(mreq) )< 0){
-		D_NW("error IP_ADD_MEMBERSHIP in UdpPort::open\n");
+		D_NWL("error IP_ADD_MEMBERSHIP in UdpPort::open\n");
 		close();
 		return false;
 	}
@@ -454,7 +443,7 @@ int UdpPort::recvfrom (uint8_t* buf, uint16_t len, int flags, uint32_t* ipAddres
 	socklen_t addrlen = sizeof(sender);
 	memset(&sender, 0, addrlen);
 
-	if(_castStat == STAT_UNICAST){
+	if(isUnicast()){
 		status = ::recvfrom( _sockfdUcast, buf, len, flags, (struct sockaddr*)&sender, &addrlen );
 	}else if(_castStat == STAT_MULTICAST){
 		status = ::recvfrom( _sockfdMcast, buf, len, flags, (struct sockaddr*)&sender, &addrlen );

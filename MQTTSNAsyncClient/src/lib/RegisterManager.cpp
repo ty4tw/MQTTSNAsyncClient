@@ -28,19 +28,12 @@
  *
  */
 
-#ifndef ARDUINO
-  	#include "MqttsnClientApp.h"
-	#include "RegisterManager.h"
-	#include "MqttsnClient.h"
-	#include "GwProxy.h"
-	#include "Timer.h"
-#else
-  	#include <MqttsnClientApp.h>
-	#include <RegisterManager.h>
-	#include <MqttsnClient.h>
-	#include <GwProxy.h>
-	#include <Timer.h>
-#endif
+#include <MqttsnClientApp.h>
+#include <RegisterManager.h>
+#include <MqttsnClient.h>
+#include <GwProxy.h>
+#include <Timer.h>
+
 #include <stdlib.h>
 #include <string.h>
 

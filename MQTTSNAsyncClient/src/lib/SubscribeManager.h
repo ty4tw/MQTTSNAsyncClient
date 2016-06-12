@@ -31,30 +31,22 @@
 #ifndef SUBSCRIBEMANAGER_H_
 #define SUBSCRIBEMANAGER_H_
 
-#ifdef ARDUINO
-    #include <MqttsnClientApp.h>
-#else
-	#include "MqttsnClientApp.h"
-#endif
+#include <MqttsnClientApp.h>
+#include <Timer.h>
+#include <RegisterManager.h>
+#include <TopicTable.h>
+
+#include <stdio.h>
+#include <string.h>
 
 #ifdef ARDUINO
-  #include <Timer.h>
-  #include <RegisterManager.h>
-  #include <TopicTable.h>
-
   #if defined(DEBUG_NW) || defined(DEBUG_MQTTSN) || defined(DEBUG)
         #include <SoftwareSerial.h>
         extern SoftwareSerial debug;
   #endif
-
 #endif  /* ARDUINO */
 
 
-#ifdef LINUX
-  #include "Timer.h"
-#endif /* LINUX */
-#include <stdio.h>
-#include <string.h>
 using namespace std;
 
 namespace tomyAsyncClient {

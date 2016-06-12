@@ -28,27 +28,20 @@
  *
  */
 
-#ifdef ARDUINO
-    #include <MqttsnClientApp.h>
-#else
-    #include "MqttsnClientApp.h"
-#endif
+#include <MqttsnClientApp.h>
+#include <Timer.h>
+#include <NetworkXBee.h>
 
 #ifdef NETWORK_XBEE
 
 #ifdef ARDUINO
-  #include <Timer.h>
-  #include <NetworkXBee.h>
   #if defined(DEBUG_NW) || defined(DEBUG_MQTTSN) || defined(DEBUG)
         #include <SoftwareSerial.h>
         extern SoftwareSerial debug;
   #endif
 #endif  /* ARDUINO */
 
-
 #ifdef LINUX
-  #include "Timer.h"
-  #include "NetworkXBee.h"
   #include <stdio.h>
   #include <sys/time.h>
   #include <sys/types.h>

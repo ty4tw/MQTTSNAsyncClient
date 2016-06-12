@@ -17,6 +17,8 @@ $(SUBDIR)/Timer.cpp \
 $(SUBDIR)/TopicTable.cpp \
 $(SUBDIR)/Util.cpp 
 
+INCLUDES += -I$(SUBDIR) 
+
 CXX := g++
 CPPFLAGS += 
 DEFS :=
@@ -42,7 +44,7 @@ $(PROG): $(OBJS)
 
 $(OUTDIR)/%.o:%.cpp
 	@if [ ! -e `dirname $@` ]; then mkdir -p `dirname $@`; fi
-	$(CXX) $(CXXFLAGS) $(CPPFLAGS) $(DEFS) -o $@ -c -MMD -MP -MF $(@:%.o=%.d) $<
+	$(CXX) $(CXXFLAGS) $(CPPFLAGS) $(INCLUDES) $(DEFS) -o $@ -c -MMD -MP -MF $(@:%.o=%.d) $<
 
 clean:
 	rm -rf $(OUTDIR)

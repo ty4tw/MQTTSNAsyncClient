@@ -31,12 +31,7 @@
 #ifndef NETWORKUDP_H_
 #define NETWORKUDP_H_
 
-
-#ifdef ARDUINO
-	#include <MqttsnClientApp.h>
-#else
-	#include "MqttsnClientApp.h"
-#endif
+#include <MqttsnClientApp.h>
 
 #ifdef NETWORK_UDP
 
@@ -45,11 +40,11 @@
 	#include <Ethernet.h>
 	#include <EthernetUdp.h>
     #if ARDUINO >= 100
-        #include "Arduino.h"
+        #include <Arduino.h>
         #include <inttypes.h>
     #else
         #if ARDUINO < 100
-            #include "WProgram.h"
+            #include <WProgram.h>
             #include <inttypes.h>
         #endif
     #endif

@@ -31,11 +31,7 @@
 #ifndef REGISTERQUE_H_
 #define REGISTERQUE_H_
 
-#ifdef ARDUINO
-	#include <MqttsnClientApp.h>
-#else
-	#include "MqttsnClientApp.h"
-#endif
+#include <MqttsnClientApp.h>
 
 namespace tomyAsyncClient {
 /*======================================

@@ -31,23 +31,17 @@
 #ifndef NETWORLXBEE_H_
 #define NETWORLXBEE_H_
 
-#ifdef ARDUINO
-    #include <MqttsnClientApp.h>
- 	#include <Timer.h>
-#else
-    #include "MqttsnClientApp.h"
-	#include "Timer.h"
-    #include <sys/time.h>
-    #include <iostream>
+#include <MqttsnClientApp.h>
+#include <Timer.h>
+
+#ifdef LINUX
+	#include <sys/time.h>
+	#include <iostream>
 #endif
-
-#ifdef NETWORK_XBEE
-
-using namespace std;
 
 #if defined(ARDUINO)
     #if ARDUINO >= 100
-        #include "Arduino.h"
+        #include <Arduino.h>
         #include <inttypes.h>
     #else
         #if ARDUINO < 100
@@ -85,6 +79,9 @@ using namespace std;
 #define PACKET_OVERFLOW        2
 #define UNEXPECTED_START_BYTE  3
 */
+
+using namespace std;
+
 namespace tomyAsyncClient {
 
 /*===========================================
@@ -172,5 +169,5 @@ private:
 };
 
 }
-#endif  /* NETWORK_XBEE */
+
 #endif  /* NETWORLXBEE_H_ */

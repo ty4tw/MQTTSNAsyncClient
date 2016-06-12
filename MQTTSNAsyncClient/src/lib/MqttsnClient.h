@@ -31,35 +31,17 @@
 #ifndef MQTTSNCLIENT_H_
 #define MQTTSNCLIENT_H_
 
-#ifdef ARDUINO
-	#include <MqttsnClientApp.h>
-#else
-	#include "MqttsnClientApp.h"
-#endif
-
+#include <MqttsnClientApp.h>
+#include <Timer.h>
+#include <TaskManager.h>
+#include <PublishManager.h>
+#include <SubscribeManager.h>
+#include <GwProxy.h>
+#include <Payload.h>
 #include <stdio.h>
 #include <string.h>
 
 using namespace std;
-#ifdef ARDUINO
-  #include <Timer.h>
-  #include <TaskManager.h>
-  #include <PublishManager.h>
-  #include <SubscribeManager.h>
-  #include <GwProxy.h>
-  #include <Payload.h>
-#endif  /* ARDUINO */
-
-
-#ifdef LINUX
-  #include "Timer.h"
-  #include "TaskManager.h"
-  #include "PublishManager.h"
-  #include "SubscribeManager.h"
-  #include "GwProxy.h"
-  #include "Payload.h"
-#endif /* LINUX */
-
 using namespace std;
 namespace tomyAsyncClient {
 struct OnPublishList{

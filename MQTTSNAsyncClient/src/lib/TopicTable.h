@@ -31,13 +31,8 @@
 #ifndef TOPICTABLE_H_
 #define TOPICTABLE_H_
 
-#ifdef ARDUINO
-	#include <MqttsnClientApp.h>
-	#include <Payload.h>
-#else
-	#include "MqttsnClientApp.h"
-	#include "Payload.h"
-#endif
+#include <MqttsnClientApp.h>
+#include <Payload.h>
 
 #include <stdio.h>
 

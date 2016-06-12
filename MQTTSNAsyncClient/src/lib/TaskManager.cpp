@@ -28,24 +28,11 @@
  *
  */
 
-#ifdef ARDUINO
-    #include <MqttsnClientApp.h>
-#else
-    #include "MqttsnClientApp.h"
-#endif
+#include <MqttsnClientApp.h>
+#include <Timer.h>
+#include <TaskManager.h>
+#include <MqttsnClient.h>
 
-#ifdef ARDUINO
-  #include <Timer.h>
-  #include <TaskManager.h>
-  #include <MqttsnClient.h>
-#endif  /* ARDUINO */
-
-
-#ifdef LINUX
-  #include "Timer.h"
-  #include "TaskManager.h"
-  #include "MqttsnClient.h"
-#endif /* LINUX */
 #include <stdio.h>
 #include <string.h>
 
